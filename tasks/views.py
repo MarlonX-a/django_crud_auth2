@@ -123,6 +123,17 @@ def tasks_completed(request):
     return render(request, 'tasks.html',{'tasks':tasks,  'tipopagina':'Tareas Completadas'})
 
 
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
+if not User.objects.filter(username='admin').exists():
+    User.objects.create_superuser('admin', 'admin@example.com', 'admin_password')
+    print('Superusuario creado')
+else:
+    print('El superusuario ya existe')
+
+
 
 
 
